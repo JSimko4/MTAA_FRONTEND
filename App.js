@@ -13,10 +13,10 @@ export default function App(){
     return(
         <NavigationContainer>
         <Stack.Navigator
-        /* screenOptions = {{
+         screenOptions = {{
                 headerShown: false
             }}
-            */
+            
             initialRouteName={"LandingScreen"}
         >
           <Stack.Screen name="LandingScreen" component={LandingScreen}/>

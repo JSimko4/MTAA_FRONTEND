@@ -62,16 +62,18 @@ export default function RegistrationScreen({navigation}) {
     button: {
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
+      paddingVertical: 15,
       paddingHorizontal: 15,
       width: 250,
       borderRadius: 4,
       elevation: 3,
       backgroundColor: "rgb(21, 9, 65)",
       borderRadius: 20,
+      marginBottom: 40,
+      marginTop: 20 
     },
     text: {
-      fontSize: 16,
+      fontSize: 18,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
@@ -80,7 +82,8 @@ export default function RegistrationScreen({navigation}) {
   });
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{fontSize: 40, fontWeight: 'bold', letterSpacing: 0.25, marginBottom: 20, marginTop: 25}}>Registrácia</Text>
 
       <View>
         <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Meno</Text>
