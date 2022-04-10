@@ -1,8 +1,12 @@
 
 import * as React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, Button, Image, FlatList, Text } from 'react-native';
 
-export default function ExercisesScreen({navigation}, exercises) {
+export default function ExercisesScreen({route, navigation}) {
+    const { exercises } = route.params;
+    console.log(exercises)
+    console.log(route.params)
+    
     const styles = StyleSheet.create({
     });
   
@@ -10,13 +14,14 @@ export default function ExercisesScreen({navigation}, exercises) {
         <FlatList
             data={exercises}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => (
+            renderItem={( item ) => (
                 <View>
-                    <Text>item.title</Text>
-                    <Image>
+                    {console.log(item)}
+                    <Text>{item.name}</Text>
+                    <Image
                         style={{width: '200px', height: '200px'}}
                         source={{uri: global.API_URL+item.image_path}}
-                    </Image>
+                    />
                     <Button
                         title='Detail'
                         onPress={() => navigation.navigate("ExerciseDetail", {exercise: item})}
