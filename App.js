@@ -5,8 +5,10 @@ import HomeScreen from './screens/HomeScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
 import LoginScreen from './screens/LoginScreen';
 
-const Stack = createNativeStackNavigator();
+// globals
+global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
 
+const Stack = createNativeStackNavigator();
 export default function App(){
     return(
         <NavigationContainer>
