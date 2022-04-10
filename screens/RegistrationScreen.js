@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, StyleSheet, Button, TextInput } from 'react-native';
+import { View, StyleSheet, Pressable, Text, TextInput } from 'react-native';
 
-const loginApi = ({navigation}, user_name, user_password, user_confirm_password) => {
+const RegisterApi = ({navigation}, user_name, user_password, user_confirm_password) => {
   console.log({user_name, user_password, user_confirm_password})
   if(user_password != user_confirm_password)
   {
@@ -50,31 +50,67 @@ export default function RegistrationScreen({navigation}) {
 
   const styles = StyleSheet.create({
     input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      borderRadius: 15,
+      fontSize: 19,
+      width: 250,
+      borderWidth: 1.5,
+      marginBottom: 35,
+      backgroundColor: "transparent"
     },
-  });  
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      width: 250,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: "rgb(21, 9, 65)",
+      borderRadius: 20,
+    },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: 'white',
+    },
+  });
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeName}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangePassword}
-      />
+      <View>
+        <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Meno</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeName}
+        />
+      </View>
+      <View>
+        <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Heslo</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangePassword}
+        />
+      </View>
 
-      <TextInput
-      style={styles.input}
-      onChangeText={onChangeConfirmPassword}
-      />
+      <View>
+        <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Potvrdenie hesla</Text>
+        <TextInput
+        style={styles.input}
+        onChangeText={onChangeConfirmPassword}/>
+      </View>
 
-    <Button title="Register" onPress={() => loginApi({navigation}, user_name, user_password, user_confirm_password)} />
+      <Pressable
+          style={styles.button}
+          onPress={() => RegisterApi({navigation}, user_name, user_password, user_confirm_password)}
+        >
+          <Text style={styles.text}>Registrovať sa</Text>
+        </Pressable>
+
     </View>
   );
 }
