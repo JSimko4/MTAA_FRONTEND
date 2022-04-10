@@ -1,48 +1,34 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet, SafeAreaView, RecyclerViewBackedScrollView } from 'react-native';
-import RoomScreen from './screens/RoomScreen.js';
-import CallScreen from './screens/CallScreen.js';
-import JoinScreen from './screens/JoinScreen.js';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignIn from './screens/SignIn';
+import Registration from './screens/Registration';
+import { View, Text } from 'react-native';
 
-export default function App() {
-  const screens = {
-    ROOM: 'JOIN_ROOM',
-    CALL: 'CALL',
-    JOIN: 'JOIN',
+function HomeScreen() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+      </View>
+    );
   }
 
-  const [screen, setScreen] = useState(screens.ROOM);
-  const [roomId, setRoomId] = useState('');
+const Stack = createNativeStackNavigator();
 
-  let content;
-
-  switch (screen) {
-    case screens.ROOM:
-      content = <RoomScreen roomId={roomId} setRoomId={setRoomId} screens={screens} setScreen={setScreen} />
-      break;
-
-    case screens.CALL:
-      content = <CallScreen roomId={roomId} screens={screens} setScreen={setScreen} />
-      break;
-
-    case screens.JOIN:
-      content = <JoinScreen roomId={roomId} screens={screens} setScreen={setScreen} />
-      break;
-
-    default:
-      content = <Text>Wrong Screen</Text>
-  }
-
-  return (
-    <SafeAreaView style={styles.container} >
-      {content}
-    </SafeAreaView>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-  },
-});
+export default function App(){
+    return(
+        <NavigationContainer>
+        <Stack.Navigator
+        /* screenOptions = {{
+                headerShown: false
+            }}
+            */
+            initialRouteName={"SignIn"}
+        >
+          <Stack.Screen name="SignIn" component={SignIn}/>
+          <Stack.Screen name="Registration" component={Registration}/>
+        
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+};
