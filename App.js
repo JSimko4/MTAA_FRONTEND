@@ -1,25 +1,23 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LandingScreen from './screens/LandingScreen';
+import HomeScreen from './screens/HomeScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
 import LoginScreen from './screens/LoginScreen';
 
-// globals
-global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
-
 const Stack = createNativeStackNavigator();
+
 export default function App(){
     return(
         <NavigationContainer>
         <Stack.Navigator
-         screenOptions = {{
+        /* screenOptions = {{
                 headerShown: false
             }}
-            
-            initialRouteName={"LandingScreen"}
+            */
+            initialRouteName={"Home"}
         >
-          <Stack.Screen name="LandingScreen" component={LandingScreen}/>
+          <Stack.Screen name="Home" component={HomeScreen}/>
           <Stack.Screen name="Login" component={LoginScreen}/>
           <Stack.Screen name="Registration" component={RegistrationScreen}/>
         
