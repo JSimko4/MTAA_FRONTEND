@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignIn from './screens/SignIn';
-import Registration from './screens/Registration';
-import { View, Text } from 'react-native';
-
-function HomeScreen() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
+import HomeScreen from './screens/HomeScreen';
+import RegistrationScreen from './screens/RegistrationScreen';
+import LoginScreen from './screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,10 +15,11 @@ export default function App(){
                 headerShown: false
             }}
             */
-            initialRouteName={"SignIn"}
+            initialRouteName={"Home"}
         >
-          <Stack.Screen name="SignIn" component={SignIn}/>
-          <Stack.Screen name="Registration" component={Registration}/>
+          <Stack.Screen name="Home" component={HomeScreen}/>
+          <Stack.Screen name="Login" component={LoginScreen}/>
+          <Stack.Screen name="Registration" component={RegistrationScreen}/>
         
         </Stack.Navigator>
       </NavigationContainer>
