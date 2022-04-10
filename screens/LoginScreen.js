@@ -30,6 +30,30 @@ const loginApi = ({navigation}, user_name, user_password) => {
   })
 };
 
+const exercisesApi = ({navigation}) => {
+  return fetch(global.API_URL + 'exercises/2/all', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+  })
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json);
+
+    if (json['status'] === 'success'){
+      navigation.navigate('Exercises', {exercises: json['data']})
+    }
+    else{
+      alert("Nespravne udaje")
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
+
 export default function LoginScreen({navigation}) {
   const [user_name, onChangeName] = React.useState();
   const [user_password, onChangePassword] = React.useState();
@@ -86,7 +110,8 @@ export default function LoginScreen({navigation}) {
 
       <Pressable
           style={styles.button}
-          onPress={() => loginApi({navigation}, user_name, user_password)}
+         // onPress={() => loginApi({navigation}, user_name, user_password)}
+         onPress={() => exercisesApi({navigation})}
         >
           <Text style={styles.text}>Prihlásiť sa</Text>
         </Pressable>
