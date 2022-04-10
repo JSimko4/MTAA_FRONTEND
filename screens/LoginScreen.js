@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Pressable , TextInput } from 'react-native';
 
 const loginApi = ({navigation}, user_name, user_password) => {
   console.log({user_name, user_password})
@@ -19,7 +19,7 @@ const loginApi = ({navigation}, user_name, user_password) => {
     console.log(json);
 
     if (json['status'] === 'success'){
-      navigation.navigate('Home', {access_token: json['access_token']})
+      navigation.navigate('LandingScreen', {access_token: json['access_token']})
     }
     else{
       alert("Nespravne udaje")
@@ -36,26 +36,60 @@ export default function LoginScreen({navigation}) {
 
   const styles = StyleSheet.create({
     input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      borderRadius: 15,
+      fontSize: 19,
+      width: 250,
+      borderWidth: 1.5,
+      marginBottom: 35,
+      backgroundColor: "transparent"
     },
-  });  
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      width: 250,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: "rgb(21, 9, 65)",
+      borderRadius: 20,
+    },
+    text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: 'white',
+    },
+  });
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeName}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangePassword}
-      />
+        <View>
+          <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Meno</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeName}
+        />
+        </View>
+        <View>
+        <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Heslo</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangePassword}
+        />
+        </View>
 
-    <Button title="Sign up" onPress={() => loginApi({navigation}, user_name, user_password)} />
-    </View>
+      <Pressable
+          style={styles.button}
+          onPress={() => loginApi({navigation}, user_name, user_password)}
+        >
+          <Text style={styles.text}>Prihlasenie</Text>
+        </Pressable>
+
+      </View>
   );
 }

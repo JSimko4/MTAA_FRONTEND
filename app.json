@@ -28,7 +28,7 @@
       "package": "com.mtaa_frontend"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }
