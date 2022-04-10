@@ -4,7 +4,6 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import RegistrationButtonOnLandingScreen from "../components/RegistrationButtonLandingScreen";
-import LoginButtonOnLandingScreen from "../components/LoginButtonLandingScreen";
 
 export default function LandingScreen({navigation}) {
   return (
@@ -15,13 +14,21 @@ export default function LandingScreen({navigation}) {
         style={styles.image1}
       ></Image>
       <View style={styles.image1Filler}></View>
+      
       <View style={styles.LoginRegisterColumn}>
+
         <RegistrationButtonOnLandingScreen
           style={styles.RegistrationButtonStyle}
+          name="Registracia"
+          link="Registration"
         ></RegistrationButtonOnLandingScreen>
-        <LoginButtonOnLandingScreen
+
+        <RegistrationButtonOnLandingScreen
           style={styles.LoginButtonStyle}
-        ></LoginButtonOnLandingScreen>
+          name="Prihlasenie"
+          link="Login"
+        ></RegistrationButtonOnLandingScreen>
+
       </View>
     </View>
   );

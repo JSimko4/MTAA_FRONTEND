@@ -5,8 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function RegistrationButtonOnLandingScreen(props) {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={[styles.container, props.style]} onPress={() => navigation.push("Registration")}>
-      <Text style={styles.registracia}>Registrácia</Text>
+    <TouchableOpacity style={[styles.container, props.style]} onPress={() => navigation.push(props.link)}>
+      <Text style={styles.registracia}>{props.name}</Text>
     </TouchableOpacity>
   );
 }
