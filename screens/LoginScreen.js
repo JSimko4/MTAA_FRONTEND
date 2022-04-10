@@ -1,8 +1,7 @@
 import { View, Button, Text } from 'react-native';
-import globals from '../globals'
 
 const loginApi = ({navigation}) => {
-  return fetch(globals.API_URL + 'login/', {
+  return fetch(global.API_URL + 'users/login/', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
