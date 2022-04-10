@@ -48,16 +48,17 @@ export default function LoginScreen({navigation}) {
     button: {
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
+      paddingVertical: 15,
       paddingHorizontal: 15,
       width: 250,
       borderRadius: 4,
       elevation: 3,
       backgroundColor: "rgb(21, 9, 65)",
       borderRadius: 20,
+      marginBottom: 40
     },
     text: {
-      fontSize: 16,
+      fontSize: 18,
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
@@ -66,7 +67,8 @@ export default function LoginScreen({navigation}) {
   });
 
   return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+        <Text style={{fontSize: 40, fontWeight: 'bold', letterSpacing: 0.25}}>Prihlásenie</Text>
 
         <View>
           <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Meno</Text>
@@ -74,8 +76,7 @@ export default function LoginScreen({navigation}) {
           style={styles.input}
           onChangeText={onChangeName}
         />
-        </View>
-        <View>
+
         <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Heslo</Text>
         <TextInput
           style={styles.input}
@@ -87,7 +88,7 @@ export default function LoginScreen({navigation}) {
           style={styles.button}
           onPress={() => loginApi({navigation}, user_name, user_password)}
         >
-          <Text style={styles.text}>Prihlasenie</Text>
+          <Text style={styles.text}>Prihlásiť sa</Text>
         </Pressable>
 
       </View>
