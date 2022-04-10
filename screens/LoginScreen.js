@@ -31,18 +31,10 @@ const loginApi = ({navigation}, user_name, user_password) => {
 };
 
 const exercisesApi = ({navigation}) => {
-  return fetch(global.API_URL + 'exercises/2/all', {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-  })
+  return fetch(global.API_URL + 'exercises/2/all')
   .then((response) => response.json())
   .then((json) => {
-    console.log(json);
-
-    if (json['status'] === 'success'){
+    if (json['status'] === 'success'){      
       navigation.navigate('Exercises', {exercises: json['data']})
     }
     else{
