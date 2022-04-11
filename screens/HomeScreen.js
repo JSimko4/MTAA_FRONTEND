@@ -17,6 +17,22 @@ const exercisesApi = ({navigation}) => {
   })
 };
 
+const usersApi = ({navigation}) => {
+  return fetch(global.API_URL + 'users/all')
+  .then((response) => response.json())
+  .then((json) => {
+    if (json['status'] === 'success'){      
+      navigation.navigate('Users', {users: json['data']})
+    }
+    else{
+      alert("Nespravne udaje")
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
+
 export default function HomeScreen({navigation}) {
     const styles = StyleSheet.create({
         button: {
@@ -67,7 +83,7 @@ export default function HomeScreen({navigation}) {
         <View>
         <Pressable
         style={styles.button}
-        onPress={() => navigation.push("Landing")}
+        onPress={() => usersApi({navigation})}
         >
         <Text style={styles.text}>Cvičenia iných používateľov</Text>
         </Pressable>

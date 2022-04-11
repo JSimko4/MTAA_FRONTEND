@@ -1,6 +1,8 @@
 import React from "react";
 import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
 import CheckBox from 'expo-checkbox';
+import {IconButton} from 'react-native-paper';
+
 
 function count_checked(checkboxes){
     let count = 0;
@@ -77,7 +79,13 @@ export default class FilterScreen extends React.Component {
 
     render() {      
       return (
-        <View style={styles.container}>
+        <View>
+          <View style ={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', 
+                         height: 60, backgroundColor: '#e0e0e0'}}>
+            <IconButton icon='arrow-left-circle' size={45} 
+                onPress={() => this.navigation.goBack()}
+            />
+        </View>
           <Text>Filtrovanie podľa časi tela ({this.state.count}/3)</Text>
           {this.state.checkboxes.length > 0 &&
             this.state.checkboxes.map(checkbox => (
@@ -126,11 +134,6 @@ export default class FilterScreen extends React.Component {
   }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,

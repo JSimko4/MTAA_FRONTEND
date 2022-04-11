@@ -8,6 +8,8 @@ import ExercisesScreen from './screens/ExercisesScreen';
 import HomeScreen from './screens/HomeScreen';
 import ExerciseDetailScreen from './screens/ExerciseDetailScreen';
 import FilterScreen from './screens/FilterScreen';
+import UsersScreen from './screens/UsersScreen';
+
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
@@ -15,9 +17,15 @@ global.user_id = 2 // debugging only - vymazat neskor
 
 const Stack = createNativeStackNavigator();
 
+const MyTheme = {
+  colors: {
+    primary: 'white',
+  },
+};
+
 export default function App(){
     return(
-        <NavigationContainer>
+        <NavigationContainer theme={MyTheme}>
         <Stack.Navigator
          screenOptions = {{
                 headerShown: false
@@ -32,7 +40,8 @@ export default function App(){
           <Stack.Screen name="Home" component={HomeScreen}/>
           <Stack.Screen name="ExerciseDetail" component={ExerciseDetailScreen}/>
           <Stack.Screen name="Filter" component={FilterScreen}/>
-        
+          <Stack.Screen name="Users" component={UsersScreen}/>
+
         </Stack.Navigator>
       </NavigationContainer>
     );
