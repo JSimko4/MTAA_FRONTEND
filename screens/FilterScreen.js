@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
 import CheckBox from 'expo-checkbox';
 
 function count_checked(checkboxes){
@@ -14,14 +14,57 @@ function count_checked(checkboxes){
 }
 
 export default class FilterScreen extends React.Component {
-    state = {
+  constructor(props) {
+    super(props)
+    this.state = {
       checkboxes: [],
     };
+    this.navigation = this.props.navigation;
+    this.body_parts = this.props.route.params.body_parts;
+    this.filterIt = this.filterIt.bind(this);
+  }
+
+  filterIt(){
+    const checkboxes = this.state.checkboxes;
+    const navigation = this.navigation;
+
+    let filter_string = "";
+    for (let i=0; i < checkboxes.length; i++){
+      let checkbox = checkboxes[i];
+      if (checkbox.value){
+        filter_string = filter_string.concat(checkbox.id+',');
+      }
+    }
+
+    filter_string = filter_string.slice(0, -1)
+
+    return fetch(global.API_URL + 'exercises/' + global.user_id + '/filter_exercises/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          body_parts: filter_string
+      })
+    })
+    .then((response) => response.json())
+    .then((json) => {  
+      if (json['status'] === 'success'){
+        navigation.navigate('Exercises', {exercises: json['data'], user_id: global.user_id})
+      }
+      else{
+        alert("Musí byť zvolený aspoň jedna časť tela na vyfiltrovanie")
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  };
   
     async componentDidMount() {
       setTimeout(() => {
-        const data = [{ id: 1, label: 'prsia' }, { id: 2, label: 'nohy' },
-        { id: 3, label: 'prsia' }, { id: 4, label: 'nohy' } ];
+        const data = this.body_parts;
         this.setState({
           checkboxes: data.map(x => {
             x['value'] = false;
@@ -32,14 +75,14 @@ export default class FilterScreen extends React.Component {
       }, 1000);
     }
 
-    render() {
+    render() {      
       return (
         <View style={styles.container}>
           <Text>Filtrovanie podľa časi tela ({this.state.count}/3)</Text>
           {this.state.checkboxes.length > 0 &&
             this.state.checkboxes.map(checkbox => (
               <View>
-                <Text>{checkbox.label}</Text>
+                <Text>{checkbox.name}</Text>
                 <CheckBox
                   onValueChange={value =>
                     this.setState(state => {
@@ -55,12 +98,12 @@ export default class FilterScreen extends React.Component {
                         return {
                             checkboxes: [
                             ...state.checkboxes.slice(0, index),
-                            { id: checkbox.id, label: checkbox.label, value },
+                            { id: checkbox.id, name: checkbox.name, value },
                             ...state.checkboxes.slice(index+1),
                             ],
                             count: count_checked(
                                 [   ...state.checkboxes.slice(0, index),
-                                    { id: checkbox.id, label: checkbox.label, value },
+                                    { id: checkbox.id, name: checkbox.name, value },
                                     ...state.checkboxes.slice(index+1)]
                             )
                         };
@@ -71,6 +114,12 @@ export default class FilterScreen extends React.Component {
                 />
               </View>
             ))}
+                    <TouchableHighlight
+            style={styles.button}
+            onPress={() => this.filterIt()}
+            >
+            <Text style={styles.text}>FILTROVAŤ</Text>
+        </TouchableHighlight>
         </View>
       );
     }
@@ -89,7 +138,7 @@ const styles = StyleSheet.create({
   checkbox: {
     alignSelf: "center",
   },
-  label: {
+  name: {
     margin: 8,
   },
 });

@@ -2,13 +2,31 @@ import * as React from 'react';
 import { View, StyleSheet, Image, FlatList, Text, TouchableOpacity } from 'react-native';
 import {IconButton} from 'react-native-paper';
 
+const bodyPartsApi = ({navigation}) => {
+    return fetch(global.API_URL + 'exercises/body_parts/')
+    .then((response) => response.json())
+    .then((json) => {
+      if (json['status'] === 'success'){  
+        console.log(json['data']);
+        navigation.navigate('Filter', {body_parts: json['data']})
+      }
+      else{
+        alert("Nespravne udaje")
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  };
+
 
 function renderFilterButton(user_id, navigation){
+    console.log(navigation)
     if(user_id != global.user_id)
         return null;
 
     return <IconButton icon='menu' size={45} 
-        onPress={() => navigation.navigate("Filter")}
+        onPress={() => bodyPartsApi({navigation})}
     />
  }
 
