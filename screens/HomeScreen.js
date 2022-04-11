@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Pressable , TextInput, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, StyleSheet, Pressable , Image } from 'react-native';
 
 const exercisesApi = ({navigation}) => {
-  // zmenit potom na vseobecne usera
-  return fetch(global.API_URL + 'exercises/2/all')
+  return fetch(global.API_URL + 'exercises/' + global.user_id + '/all')
   .then((response) => response.json())
   .then((json) => {
     if (json['status'] === 'success'){      
-      navigation.navigate('Exercises', {exercises: json['data']})
+      navigation.navigate('Exercises', {exercises: json['data'], user_id: global.user_id})
     }
     else{
       alert("Nespravne udaje")

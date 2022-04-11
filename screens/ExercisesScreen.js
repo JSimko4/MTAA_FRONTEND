@@ -4,7 +4,7 @@ import {IconButton} from 'react-native-paper';
 
 
 function renderFilterButton(user_id, navigation){
-    if(user_id != 2)
+    if(user_id != global.user_id)
         return null;
 
     return <IconButton icon='menu' size={45} 
@@ -13,7 +13,7 @@ function renderFilterButton(user_id, navigation){
  }
 
 function renderAddButton(user_id, navigation){
-    if(user_id != 2)
+    if(user_id != global.user_id)
         return <View style ={{ height: 25}}/>
     
     return (
@@ -28,6 +28,7 @@ function renderAddButton(user_id, navigation){
 
 export default function ExercisesScreen({route, navigation}) {
     const exercises = route.params.exercises;
+    const user_id = route.params.user_id;
 
     const styles = StyleSheet.create({
         icon: {
@@ -49,7 +50,7 @@ export default function ExercisesScreen({route, navigation}) {
                 <IconButton icon='arrow-left-circle' size={45} 
                     onPress={() => navigation.goBack()}
                 />
-                { renderFilterButton(2, navigation) }
+                { renderFilterButton(user_id, navigation) }
             </View>
             
             <FlatList
@@ -78,7 +79,7 @@ export default function ExercisesScreen({route, navigation}) {
                         </TouchableOpacity>
                     </View>
                 )}
-                ListFooterComponent={() => renderAddButton(2, navigation)}
+                ListFooterComponent={() => renderAddButton(user_id, navigation)}
             />
         </View>
     );

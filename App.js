@@ -10,6 +10,7 @@ import ExerciseDetailScreen from './screens/ExerciseDetailScreen';
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
+global.user_id = 2 // debugging only - vymazat neskor
 
 const Stack = createNativeStackNavigator();
 
