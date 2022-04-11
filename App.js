@@ -7,6 +7,7 @@ import LoginScreen from './screens/LoginScreen';
 import ExercisesScreen from './screens/ExercisesScreen';
 import HomeScreen from './screens/HomeScreen';
 import ExerciseDetailScreen from './screens/ExerciseDetailScreen';
+import FilterScreen from './screens/FilterScreen';
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
@@ -30,6 +31,7 @@ export default function App(){
           <Stack.Screen name="Exercises" component={ExercisesScreen}/>
           <Stack.Screen name="Home" component={HomeScreen}/>
           <Stack.Screen name="ExerciseDetail" component={ExerciseDetailScreen}/>
+          <Stack.Screen name="Filter" component={FilterScreen}/>
         
         </Stack.Navigator>
       </NavigationContainer>

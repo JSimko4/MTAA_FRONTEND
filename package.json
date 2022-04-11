@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@config-plugins/react-native-webrtc": "^2.1.1",
+    "@react-native-community/checkbox": "^0.5.12",
     "@react-native-firebase/app": "^14.7.0",
     "@react-native-firebase/firestore": "^14.7.0",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.1",
     "expo": "~44.0.0",
+    "expo-checkbox": "~2.0.0",
     "expo-dev-client": "~0.8.4",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
@@ -30,7 +32,8 @@
     "react-native-svg": "12.1.1",
     "react-native-video": "^5.2.0",
     "react-native-web": "0.17.1",
-    "react-native-webrtc": "^1.100.0"
+    "react-native-webrtc": "^1.100.0",
+    "rn-checkbox-list": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
