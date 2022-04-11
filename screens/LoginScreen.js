@@ -20,7 +20,8 @@ const loginApi = ({navigation}, user_name, user_password) => {
 
     if (json['status'] === 'success'){
       global.user_id = json['id'];
-      navigation.navigate('Home', {access_token: json['access_token'], user_id: json['id']})
+      global.access_token = json['access_token'];
+      navigation.navigate('Home')
     }
     else{
       alert("Nespravne udaje")
