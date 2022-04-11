@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable , TextInput, Image } from 'react-nati
 import { useNavigation } from '@react-navigation/native';
 
 const exercisesApi = ({navigation}) => {
+  // zmenit potom na vseobecne usera
   return fetch(global.API_URL + 'exercises/2/all')
   .then((response) => response.json())
   .then((json) => {
