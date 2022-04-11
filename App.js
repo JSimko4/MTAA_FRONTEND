@@ -9,6 +9,7 @@ import HomeScreen from './screens/HomeScreen';
 import ExerciseDetailScreen from './screens/ExerciseDetailScreen';
 import FilterScreen from './screens/FilterScreen';
 import UsersScreen from './screens/UsersScreen';
+import AddExerciseScreen from './screens/AddExerciseScreen';
 
 
 // globals
@@ -41,6 +42,7 @@ export default function App(){
           <Stack.Screen name="ExerciseDetail" component={ExerciseDetailScreen}/>
           <Stack.Screen name="Filter" component={FilterScreen}/>
           <Stack.Screen name="Users" component={UsersScreen}/>
+          <Stack.Screen name="AddExercise" component={AddExerciseScreen}/>
 
         </Stack.Navigator>
       </NavigationContainer>
