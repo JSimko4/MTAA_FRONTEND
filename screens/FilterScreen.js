@@ -86,11 +86,13 @@ export default class FilterScreen extends React.Component {
                 onPress={() => this.navigation.goBack()}
             />
         </View>
-          <Text>Filtrovanie podľa časi tela ({this.state.count}/3)</Text>
+        <View style = {{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
+          <Text style ={{marginLeft: -100, marginTop: 15, fontSize: 16, lineHeight: 21, fontWeight: 'bold',}}>Filtrovanie podľa časti tela: ({this.state.count}/3)</Text>
           {this.state.checkboxes.length > 0 &&
             this.state.checkboxes.map(checkbox => (
-              <View>
-                <Text>{checkbox.name}</Text>
+              <View style = {{flexDirection:'column', alignItems:'center', justifyContent:'center', marginTop: 25}}>
+                <View style = {{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+                <View style = {{marginLeft: 20, flexDirection: 'row', alignItems:'flex-start'}}>
                 <CheckBox
                   onValueChange={value =>
                     this.setState(state => {
@@ -113,21 +115,27 @@ export default class FilterScreen extends React.Component {
                                 [   ...state.checkboxes.slice(0, index),
                                     { id: checkbox.id, name: checkbox.name, value },
                                     ...state.checkboxes.slice(index+1)]
-                            )
-                        };
-                    })
-                  }
-                  value={checkbox.value}
-                  key={checkbox.id}
-                />
-              </View>
-            ))}
-                    <TouchableHighlight
-            style={styles.button}
-            onPress={() => this.filterIt()}
-            >
-            <Text style={styles.text}>FILTROVAŤ</Text>
-        </TouchableHighlight>
+                                )
+                            };
+                        })
+                      }
+                      value={checkbox.value}
+                      key={checkbox.id}
+                    />
+                    <Text>{checkbox.name}</Text>
+                    </View> 
+                    </View>
+                  </View>
+                ))}
+                <View style = {{alignItems:'center', }}>
+                <TouchableHighlight
+                style={styles.button1}
+                onPress={() => this.filterIt()}
+                >
+                <Text style={styles.text}>FILTROVAŤ</Text>
+            </TouchableHighlight>
+            </View>
+          </View>
         </View>
       );
     }
@@ -143,5 +151,25 @@ const styles = StyleSheet.create({
   },
   name: {
     margin: 8,
+  },
+  button1: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    width: 200,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "rgb(21, 9, 65)",
+    borderRadius: 20,
+    marginBottom: 0,
+    marginTop: 45, 
+  },
+  text: {
+  fontSize: 14,
+  lineHeight: 21,
+  fontWeight: 'bold',
+  letterSpacing: 0.25,
+  color: 'white',
   },
 });

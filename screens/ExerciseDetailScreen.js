@@ -105,7 +105,7 @@ export default function ExerciseDetailScreen({route, navigation}) {
             </View>
           </View>
 
-          <View style={{flex: 5}}>
+          <View style={{flex: 4}}>
             <View style={{flexDirection: 'row', flexWrap: 'wrap', marginBottom: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
               <Text style={styles.textMidNazov}>Autor: </Text>
               <Text style={styles.text1}>{exercise.creator_name}</Text>
