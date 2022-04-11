@@ -26,7 +26,8 @@ const RegisterApi = ({navigation}, user_name, user_password, user_confirm_passwo
 
       if (json['status'] === 'success'){
         global.user_id = json['id'];
-        navigation.navigate('Home', {access_token: json['access_token'], user_id: json['id']})
+        global.access_token = json['access_token'];
+        navigation.navigate('Home')
       }
       else if(json['status'] === 'bad request')
       {

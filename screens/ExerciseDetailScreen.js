@@ -2,7 +2,40 @@ import * as React from 'react';
 import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import {IconButton} from 'react-native-paper';
 
-export default function ExerciseDetailScreen({navigation}) {
+function renderBodyParts(styles, body_parts) {
+  return body_parts.map((obj, index) => {
+    const key = index;
+    return <Text style={styles.textBodyparts} key={key}>{obj.name}</Text>
+  });
+}
+
+const deleteExerciseApi = ({navigation}, exercise_id) => {
+  return fetch(global.API_URL + 'exercises/' + exercise_id + '/delete/', {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'access-token-api': global.access_token
+    }
+  })
+  .then((response) => response.json())
+  .then((json) => {
+    if (json['status'] === 'success'){  
+      navigation.navigate('Home')
+    }
+    else{
+      alert("Nespravne udaje")
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
+
+export default function ExerciseDetailScreen({route, navigation}) {
+    const exercise = route.params.exercise;
+    const body_parts = exercise.body_parts;
+
     const styles = StyleSheet.create({
       image: {
         width: '100%',
@@ -44,8 +77,6 @@ export default function ExerciseDetailScreen({navigation}) {
         fontSize: 1,
         fontWeight: 'normal',
         letterSpacing: 0.25,
-        //marginLeft: 40,
-        //marginRight: 30,
       },
       textScroll: {
         fontSize: 20,
@@ -56,52 +87,54 @@ export default function ExerciseDetailScreen({navigation}) {
   
     return (
         <View style={{flexDirection: 'column', justifyContent: 'space-evenly', flex: 1}}>
-
-
-
-
           <ImageBackground
-          source={require("../assets/images/icon.png")}
-          style = {styles.image}
-          resizeMode="cover">
-
-          <IconButton icon='arrow-left-circle' size={45} 
-                    onPress={() => navigation.goBack()}/>
-          
+            source={{uri: global.API_URL+exercise.image_path}}
+            style={styles.image}
+            resizeMode="cover"
+            >
+              <IconButton icon='arrow-left-circle' size={45} onPress={() => navigation.goBack()}/>
           </ImageBackground>
           
-
           <View style={{flex: 2}}>
             <View style={{alignItems: 'center'}}>
-            <Text style={styles.textNazov}>Názov cvicenia</Text>
+            <Text style={styles.textNazov}>{exercise.name}</Text>
             </View>
 
             <View style={{flexDirection: 'row', marginTop: 20, justifyContent: 'center', alignItems: 'center'}}>
-              <Text style={styles.textBodyparts}>Hrudník</Text>
-              <Text style={styles.textBodyparts}>Biceps</Text>
-              <Text style={styles.textBodyparts}>Triceps</Text>
+              {renderBodyParts(styles, body_parts)}
             </View>
           </View>
 
           <View style={{flex: 5}}>
             <View style={{flexDirection: 'row', flexWrap: 'wrap', marginBottom: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
               <Text style={styles.textMidNazov}>Autor: </Text>
-              <Text style={styles.text1}>Ja</Text>
+              <Text style={styles.text1}>{exercise.creator_name}</Text>
             </View>
 
             <View style={{flexDirection: 'column', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start', flex: 1}}>
               <Text style={styles.textMidNazov}>Popis cvičenia: </Text>
               <ScrollView>
                 <Text style={styles.textScroll}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
-
+                {exercise.description}
                 </Text>
               </ScrollView>
            </View>
           </View>
 
-          <View style={{flexDirection: 'column', marginBottom: 15, alignItems: 'center', justifyContent: 'flex-start'}}>
-            <Text>Si kokot</Text>
+          <View style={{backgroundColor: '#e0e0e0', flexDirection: 'row', 
+                        alignItems: 'center', justifyContent: 'space-evenly'}}>
+              
+              <IconButton icon='pencil' size={40} 
+                  onPress={() => this.navigation.goBack()}
+              />
+              
+              <IconButton icon='phone' size={40} 
+                  onPress={() => this.navigation.goBack()}
+              />
+              
+              <IconButton icon='trash-can' size={40} 
+                  onPress={() => deleteExerciseApi({navigation}, exercise.id)}
+              />
           </View>
   
         </View>
