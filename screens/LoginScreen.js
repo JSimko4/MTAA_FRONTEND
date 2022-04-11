@@ -19,23 +19,7 @@ const loginApi = ({navigation}, user_name, user_password) => {
     console.log(json);
 
     if (json['status'] === 'success'){
-      navigation.navigate('LandingScreen', {access_token: json['access_token']})
-    }
-    else{
-      alert("Nespravne udaje")
-    }
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-};
-
-const exercisesApi = ({navigation}) => {
-  return fetch(global.API_URL + 'exercises/2/all')
-  .then((response) => response.json())
-  .then((json) => {
-    if (json['status'] === 'success'){      
-      navigation.navigate('Exercises', {exercises: json['data']})
+      navigation.navigate('Home', {access_token: json['access_token']})
     }
     else{
       alert("Nespravne udaje")
@@ -102,8 +86,7 @@ export default function LoginScreen({navigation}) {
 
       <Pressable
           style={styles.button}
-         // onPress={() => loginApi({navigation}, user_name, user_password)}
-         onPress={() => exercisesApi({navigation})}
+          onPress={() => loginApi({navigation}, user_name, user_password)}
         >
           <Text style={styles.text}>Prihlásiť sa</Text>
         </Pressable>

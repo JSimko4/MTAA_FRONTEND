@@ -2,6 +2,22 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Pressable , TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+const exercisesApi = ({navigation}) => {
+  return fetch(global.API_URL + 'exercises/2/all')
+  .then((response) => response.json())
+  .then((json) => {
+    if (json['status'] === 'success'){      
+      navigation.navigate('Exercises', {exercises: json['data']})
+    }
+    else{
+      alert("Nespravne udaje")
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
+
 export default function HomeScreen({navigation}) {
     const styles = StyleSheet.create({
         button: {
@@ -43,8 +59,8 @@ export default function HomeScreen({navigation}) {
         <View>
         <Pressable
         style={styles.button}
-        onPress={() => navigation.push("Landing")}
-        >
+         onPress={() => exercisesApi({navigation})}
+         >
         <Text style={styles.text}>Moje cvičenia</Text>
         </Pressable>
         </View>

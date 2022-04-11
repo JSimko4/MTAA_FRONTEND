@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { View, StyleSheet, Button, Image, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, FlatList, Text, TouchableOpacity } from 'react-native';
 
 export default function ExercisesScreen({route, navigation}) {
     const exercises = route.params.exercises;

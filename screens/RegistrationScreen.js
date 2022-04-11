@@ -25,7 +25,7 @@ const RegisterApi = ({navigation}, user_name, user_password, user_confirm_passwo
       console.log(json);
 
       if (json['status'] === 'success'){
-        navigation.navigate('LandingScreen', {access_token: json['access_token']})
+        navigation.navigate('Home', {access_token: json['access_token']})
       }
       else if(json['status'] === 'bad request')
       {
