@@ -129,7 +129,7 @@ export default function ExerciseDetailScreen({route, navigation}) {
               />
               
               <IconButton icon='phone' size={40} 
-                  onPress={() => this.navigation.goBack()}
+                  onPress={() => navigation.navigate('Call')}
               />
               
               <IconButton icon='trash-can' size={40} 
