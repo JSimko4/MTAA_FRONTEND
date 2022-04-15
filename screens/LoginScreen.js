@@ -82,6 +82,7 @@ export default function LoginScreen({navigation}) {
         <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Heslo</Text>
         <TextInput
           style={styles.input}
+          secureTextEntry={true}
           onChangeText={onChangePassword}
         />
         </View>
