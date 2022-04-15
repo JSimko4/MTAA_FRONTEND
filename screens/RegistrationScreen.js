@@ -99,6 +99,8 @@ export default function RegistrationScreen({navigation}) {
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
+          secureTextEntry={true}
+
         />
       </View>
 
@@ -106,7 +108,9 @@ export default function RegistrationScreen({navigation}) {
         <Text style={{marginBottom: 6, marginLeft: 15, fontSize: 16, lineHeight: 21}}>Potvrdenie hesla</Text>
         <TextInput
         style={styles.input}
-        onChangeText={onChangeConfirmPassword}/>
+        onChangeText={onChangeConfirmPassword}
+        secureTextEntry={true}
+        />
       </View>
 
       <Pressable
@@ -119,17 +123,3 @@ export default function RegistrationScreen({navigation}) {
     </View>
   );
 }
-
-
-
-
-
-/*export default function RegistrationScreen({navigation}) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
-    <Text>Rgistration screen</Text>
-    <Button title="Sign up" onPress={() => alert("todo!")} />
-    </View>
-  );
-}*/
