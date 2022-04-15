@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DoneWithIt",
-    "plugins": ["@config-plugins/react-native-webrtc"],
+    "plugins": ["@config-plugins/react-native-webrtc","expo-image-picker"],
     "slug": "DoneWithIt",
     "version": "1.0.0",
     "orientation": "portrait",

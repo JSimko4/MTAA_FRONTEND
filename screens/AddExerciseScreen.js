@@ -1,8 +1,58 @@
 import * as React from 'react';
-import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, ScrollView, ImageBackground, Pressable } from 'react-native';
+import { View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
 import {IconButton} from 'react-native-paper';
+import * as ImagePicker from 'expo-image-picker';
+
+const addExerciseApi = ({navigation}, name, body_parts, image, description) => {
+  console.log({name, body_parts, image, description})
+  return fetch(global.API_URL + 'users/login/', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      body_parts: body_parts,
+      image: image,
+      description: description
+    })
+  })
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json);
+
+    if (json['status'] === 'success'){
+      navigation.navigate('Home')
+    }
+    else{
+      alert("Nespravne udaje")
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+};
 
 export default function AddExerciseScreen({navigation}) {
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const [name, onChangeName] = React.useState();
+  const [description, onChangeDescription] = React.useState();
 
     const styles = StyleSheet.create({
         input: {
@@ -91,16 +141,21 @@ export default function AddExerciseScreen({navigation}) {
 
         <View style={{flex: 0.9, flexDirection:'column',alignItems:'center'}}>
         <Text style={styles.textNazov}>Názov cvičenia</Text>
-        <TextInput style={styles.input}/>
+        <TextInput 
+          style={styles.input}
+          onChangeText={onChangeName}
+          />
  
-
-        <Pressable style={styles.button1}>
+        <TouchableOpacity 
+          style={styles.button1}
+          onPress={pickImage}
+        >
           <Text style={styles.text}>Nahrať obrázok...</Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable style={styles.button2}>
+        <TouchableOpacity style={styles.button2}>
           <Text style={styles.text}>Nastaviť časti tela</Text>
-        </Pressable>
+        </TouchableOpacity>
         </View>
 
         <View style={{flex: 0.85, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -111,37 +166,20 @@ export default function AddExerciseScreen({navigation}) {
 
         <View style={{flex: 0.65 , flexDirection: 'column', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start'}}>
               <Text style={styles.textMidNazov}>Popis cvičenia: </Text>
-              <ScrollView>
-                <Text style={styles.textScroll}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d
-                  Lorem ipsum dolor s
-
-                </Text>
-              </ScrollView>
+              <TextInput 
+          style={styles.input}
+          onChangeText={onChangeDescription}
+          />
         </View>
 
         <View style ={{flex: 0.65, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-            <Pressable style={styles.button2}>
+            <TouchableOpacity 
+              style={styles.button2}
+              onPress={() => addExerciseApi({navigation}, "name", "1,2", "test", "test")}
+            >
             <Text style={styles.text}>Pridať</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
-
-
-
-
-
-
     </View>
       );
-
-
-
-
-
-
-
-
-
-
-    
 }
