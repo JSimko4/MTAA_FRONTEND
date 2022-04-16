@@ -58,17 +58,15 @@ export default class FilterScreen extends React.Component {
     )
   };
   
-    async componentDidMount() {
-      setTimeout(() => {
-        const data = this.body_parts;
-        this.setState({
-          checkboxes: data.map(x => {
-            x['value'] = false;
-            return x;
-          }),
-          count: 0
-        });
-      }, 1000);
+    componentDidMount() {
+      const data = this.body_parts;
+      this.setState({
+        checkboxes: data.map(x => {
+          x['value'] = false;
+          return x;
+        }),
+        count: 0
+      });
     }
 
     render() {      
