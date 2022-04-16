@@ -112,11 +112,11 @@ export default class FilterScreen extends React.Component {
                                     ...state.checkboxes.slice(index+1)]
                                 )
                             };
-                        })
-                      }
-                      value={checkbox.value}
-                      key={checkbox.id}
-                    />
+                      })
+                  }
+                  value={checkbox.value}
+                  key={checkbox.id}
+                />
                     <Text>{checkbox.name}</Text>
                     </View> 
                     </View>

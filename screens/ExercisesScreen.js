@@ -7,7 +7,6 @@ const bodyPartsApi = ({navigation}) => {
     .then((response) => response.json())
     .then((json) => {
         if (json['status'] === 'success'){  
-        console.log(json['data']);
         navigation.navigate('Filter', {body_parts: json['data']})
         }
         else{
@@ -24,7 +23,6 @@ const navigateToAdd = ({navigation}) => {
     .then((response) => response.json())
     .then((json) => {
         if (json['status'] === 'success'){  
-        console.log(json['data']);
         navigation.navigate("AddExercise", 
                             {body_parts: json['data'], exercise_name : null, 
                             exercise_description: null, exercise_image: null}
