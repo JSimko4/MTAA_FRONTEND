@@ -51,6 +51,7 @@ export default function UsersScreen({route, navigation}) {
                 contentContainerStyle={{ paddingBottom: 60}}
                 data={users}
                 renderItem={( {item} ) => (
+                  item.id != global.logged_user_id ?  
                     <View style ={{ flexDirection:'row', flex:1, justifyContent:'space-evenly', alignItems:'center',
                                     marginTop: 20}}>
                         <TouchableOpacity 
@@ -63,6 +64,7 @@ export default function UsersScreen({route, navigation}) {
                         </Text>
                         </TouchableOpacity>
                     </View>
+                    : null
                 )}
             />
         </View>
