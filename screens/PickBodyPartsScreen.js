@@ -27,6 +27,7 @@ export default class FilterScreen extends React.Component {
     this.exercise_name = this.props.route.params.exercise_name;
     this.exercise_image = this.props.route.params.exercise_image;
     this.exercise_description = this.props.route.params.exercise_description;
+    this.destination_back = this.props.route.params.destination_back;
 
     console.log(this.exercise_name, this.exercise_image, this.exercise_description)
 
@@ -47,15 +48,19 @@ export default class FilterScreen extends React.Component {
 
     body_parts_string = body_parts_string.slice(0, -1)
 
-    navigation.navigate("AddExercise", 
-      {
-        body_parts: this.body_parts, 
-        body_parts_string: body_parts_string,
-        exercise_name : this.exercise_name, 
-        exercise_description: this.exercise_description, 
-        exercise_image: this.exercise_image
-      }
-    )
+    if (body_parts_string.length == 0)
+      alert("Musí byť zvolená aspoň jedna časť tela")
+    else{
+      navigation.navigate(this.destination_back, 
+        {
+          body_parts: this.body_parts, 
+          body_parts_string: body_parts_string,
+          exercise_name : this.exercise_name, 
+          exercise_description: this.exercise_description, 
+          exercise_image: this.exercise_image,
+        }
+      )
+    }
   };
   
     componentDidMount() {

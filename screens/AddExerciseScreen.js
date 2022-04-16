@@ -187,7 +187,11 @@ export default function AddExerciseScreen({route, navigation}) {
         onPress={() =>
           navigation.navigate(
             "PickBodyParts", 
-            { exercise_name : name, exercise_description: description, exercise_image: image,
+            { 
+              destination_back: "AddExercise", 
+              exercise_name : name, 
+              exercise_description: description, 
+              exercise_image: image,
               body_parts: body_parts 
             }
           )

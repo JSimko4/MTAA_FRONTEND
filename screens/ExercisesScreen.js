@@ -20,23 +20,23 @@ const bodyPartsApi = ({navigation}) => {
 };
 
 const navigateToAdd = ({navigation}) => {
-return fetch(global.API_URL + 'exercises/body_parts/')
-.then((response) => response.json())
-.then((json) => {
-    if (json['status'] === 'success'){  
-    console.log(json['data']);
-    navigation.navigate("AddExercise", 
-                        {body_parts: json['data'], exercise_name : null, 
-                        exercise_description: null, exercise_image: null}
-                        )
-    }
-    else{
-    alert("Nepodarilo sa načítať časti tela")
-    }
-})
-.catch((error) => {
-    console.log(error);
-})
+    return fetch(global.API_URL + 'exercises/body_parts/')
+    .then((response) => response.json())
+    .then((json) => {
+        if (json['status'] === 'success'){  
+        console.log(json['data']);
+        navigation.navigate("AddExercise", 
+                            {body_parts: json['data'], exercise_name : null, 
+                            exercise_description: null, exercise_image: null}
+                            )
+        }
+        else{
+        alert("Nepodarilo sa načítať časti tela")
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+    })
 };
 
 function renderFilterButton(user_id, navigation){

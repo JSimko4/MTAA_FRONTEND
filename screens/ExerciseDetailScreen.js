@@ -2,6 +2,24 @@ import * as React from 'react';
 import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import {IconButton} from 'react-native-paper';
 
+const navigateToEdit = ({navigation}, exercise) => {
+  console.log(exercise)
+  return fetch(global.API_URL + 'exercises/body_parts/')
+  .then((response) => response.json())
+  .then((json) => {
+      if (json['status'] === 'success'){  
+        global.exercise_id = exercise.id;
+        navigation.navigate("EditExercise", {body_parts: json['data'], exercise: exercise})
+      }
+      else{
+        alert("Nepodarilo sa načítať časti tela")
+      }
+  })
+  .catch((error) => {
+      console.log(error);
+  })
+};
+
 function renderBodyParts(styles, body_parts) {
   return body_parts.map((obj, index) => {
     const key = index;
@@ -125,7 +143,7 @@ export default function ExerciseDetailScreen({route, navigation}) {
                         alignItems: 'center', justifyContent: 'space-evenly'}}>
               
               <IconButton icon='pencil' size={40} 
-                  onPress={() => this.navigation.goBack()}
+                  onPress={() => navigateToEdit({navigation}, exercise)}
               />
               
               <IconButton icon='phone' size={40} 
