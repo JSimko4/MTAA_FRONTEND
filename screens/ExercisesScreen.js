@@ -6,19 +6,38 @@ const bodyPartsApi = ({navigation}) => {
     return fetch(global.API_URL + 'exercises/body_parts/')
     .then((response) => response.json())
     .then((json) => {
-      if (json['status'] === 'success'){  
+        if (json['status'] === 'success'){  
         console.log(json['data']);
         navigation.navigate('Filter', {body_parts: json['data']})
-      }
-      else{
-        alert("Nespravne udaje")
-      }
+        }
+        else{
+        alert("Nepodarilo sa načítať časti tela")
+        }
     })
     .catch((error) => {
-      console.log(error);
+        console.log(error);
     })
-  };
+};
 
+const navigateToAdd = ({navigation}) => {
+return fetch(global.API_URL + 'exercises/body_parts/')
+.then((response) => response.json())
+.then((json) => {
+    if (json['status'] === 'success'){  
+    console.log(json['data']);
+    navigation.navigate("AddExercise", 
+                        {body_parts: json['data'], exercise_name : null, 
+                        exercise_description: null, exercise_image: null}
+                        )
+    }
+    else{
+    alert("Nepodarilo sa načítať časti tela")
+    }
+})
+.catch((error) => {
+    console.log(error);
+})
+};
 
 function renderFilterButton(user_id, navigation){
     console.log(navigation)
@@ -37,8 +56,9 @@ function renderAddButton(user_id, navigation){
     return (
     <View style ={{flexDirection:'row', justifyContent:'center', alignItems:'center', 
                    height: 70, marginVertical: 15}}>
-        <IconButton icon='plus-circle' size={60} 
-            onPress={() => navigation.navigate("AddExercise")}
+        <IconButton 
+            icon='plus-circle' size={60} 
+            onPress={() => navigateToAdd({navigation})}
         />
     </View>
     )

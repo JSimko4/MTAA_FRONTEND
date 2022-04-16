@@ -11,6 +11,7 @@ import FilterScreen from './screens/FilterScreen';
 import UsersScreen from './screens/UsersScreen';
 import AddExerciseScreen from './screens/AddExerciseScreen';
 import CallScreen from './WebRtc';
+import PickBodyPartsScreen from './screens/PickBodyPartsScreen'
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
@@ -33,7 +34,7 @@ export default function App(){
          screenOptions = {{
                 headerShown: false
             }} 
-            initialRouteName={"Landing"}
+            initialRouteName={"Home"}
         >
           
           <Stack.Screen name="Landing" component={LandingScreen}/>
@@ -45,6 +46,7 @@ export default function App(){
           <Stack.Screen name="Filter" component={FilterScreen}/>
           <Stack.Screen name="Users" component={UsersScreen}/>
           <Stack.Screen name="AddExercise" component={AddExerciseScreen}/>
+          <Stack.Screen name="PickBodyParts" component={PickBodyPartsScreen}/>
           <Stack.Screen name="Call" component={CallScreen}/>
 
         </Stack.Navigator>
