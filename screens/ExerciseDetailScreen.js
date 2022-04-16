@@ -102,7 +102,7 @@ function renderCallButton(navigation, creator_id){
   )
 }
 
-function renderEditButton(navigation, user_id){
+function renderEditButton(navigation, user_id, exercise){
   if(user_id != global.logged_user_id)
       return null
   
@@ -114,7 +114,7 @@ function renderEditButton(navigation, user_id){
   )
 }
 
-function renderDeleteButton(navigation, user_id){
+function renderDeleteButton(navigation, user_id, exercise){
   if(user_id != global.logged_user_id)
       return null
   
@@ -224,11 +224,11 @@ export default function ExerciseDetailScreen({route, navigation}) {
 
               {renderSaveButton(navigation, creator_id, user_id, exercise.id)}
               
-              {renderEditButton(navigation, user_id)}
+              {renderEditButton(navigation, user_id, exercise)}
 
               {renderCallButton(navigation, creator_id)}
 
-              {renderDeleteButton(navigation, user_id)}
+              {renderDeleteButton(navigation, user_id, exercise)}
           </View>
         </View>
     );
