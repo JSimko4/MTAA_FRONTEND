@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, StyleSheet, Pressable, Text, TextInput } from 'react-native';
 
 const RegisterApi = ({navigation}, user_name, user_password, user_confirm_password) => {
-  console.log({user_name, user_password, user_confirm_password})
   if(user_password != user_confirm_password)
   {
     alert("Passwords do not match");

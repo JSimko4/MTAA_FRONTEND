@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Pressable , TextInput } from 'react-native';
 
 const loginApi = ({navigation}, user_name, user_password) => {
-  console.log({user_name, user_password})
   return fetch(global.API_URL + 'users/login/', {
     method: 'POST',
     headers: {

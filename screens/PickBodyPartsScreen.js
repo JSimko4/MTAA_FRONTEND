@@ -29,8 +29,6 @@ export default class FilterScreen extends React.Component {
     this.exercise_description = this.props.route.params.exercise_description;
     this.destination_back = this.props.route.params.destination_back;
 
-    console.log(this.exercise_name, this.exercise_image, this.exercise_description)
-
     this.addBodyParts = this.addBodyParts.bind(this);
   }
 

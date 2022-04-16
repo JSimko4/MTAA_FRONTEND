@@ -3,7 +3,6 @@ import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, ScrollView,
 import {IconButton} from 'react-native-paper';
 
 const navigateToEdit = ({navigation}, exercise) => {
-  console.log(exercise)
   return fetch(global.API_URL + 'exercises/body_parts/')
   .then((response) => response.json())
   .then((json) => {
