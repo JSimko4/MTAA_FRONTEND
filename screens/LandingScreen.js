@@ -64,14 +64,3 @@ const styles = StyleSheet.create({
     marginLeft: 85
   }
 });
-
-/*export default function HomeScreen({navigation}) {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>HOME SCREEN</Text>
-        <Button title="Login" onPress={() => navigation.push("Login")} />
-        <Button title="Register" onPress={() => navigation.push("Registration")} />
-      </View>
-    );
-  }*/
-

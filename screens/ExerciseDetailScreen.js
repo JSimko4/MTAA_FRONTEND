@@ -9,14 +9,50 @@ function renderBodyParts(styles, body_parts) {
   });
 }
 
-function renderCallButton(user_id, navigation){
-  if(user_id != global.logged_user_id)
+function renderSaveButton(navigation, creator_id, user_id){
+  if(creator_id == global.logged_user_id && user_id == global.logged_user_id)
+      return null
+  
+  return (
+    <IconButton 
+      icon='content-save' size={40} 
+      onPress={() => alert("TODO")}
+    />
+  )
+}
+
+function renderCallButton(navigation, creator_id){
+  if(creator_id == global.logged_user_id)
       return null
   
   return (
     <IconButton 
       icon='phone' size={40} 
       onPress={() => navigation.navigate('Call')}
+    />
+  )
+}
+
+function renderEditButton(navigation, user_id){
+  if(user_id != global.logged_user_id)
+      return null
+  
+  return (
+    <IconButton 
+      icon='pencil' size={40} 
+      onPress={() => navigateToEdit({navigation}, exercise)}
+    />
+  )
+}
+
+function renderDeleteButton(navigation, user_id){
+  if(user_id != global.logged_user_id)
+      return null
+  
+  return (
+    <IconButton 
+      icon='trash-can' size={40} 
+      onPress={() => deleteExerciseApi({navigation}, exercise.id)}
     />
   )
 }
@@ -64,8 +100,9 @@ const deleteExerciseApi = ({navigation}, exercise_id) => {
 export default function ExerciseDetailScreen({route, navigation}) {
     const exercise = route.params.exercise;
     const user_id = route.params.user_id;
+    const creator_id = exercise.creator_id;
     const body_parts = exercise.body_parts;
-    console.log(exercise)
+
 
 
     const styles = StyleSheet.create({
@@ -155,16 +192,15 @@ export default function ExerciseDetailScreen({route, navigation}) {
 
           <View style={{backgroundColor: '#e0e0e0', flexDirection: 'row', 
                         alignItems: 'center', justifyContent: 'space-evenly'}}>
-              
-              <IconButton icon='pencil' size={40} 
-                  onPress={() => navigateToEdit({navigation}, exercise)}
-              />
 
-              {renderCallButton(user_id, navigation)}
+              {renderSaveButton(navigation, creator_id, user_id)}
               
-              <IconButton icon='trash-can' size={40} 
-                  onPress={() => deleteExerciseApi({navigation}, exercise.id)}
-              />
+              {renderEditButton(navigation, user_id)}
+
+              {renderCallButton(navigation, creator_id)}
+
+              {renderDeleteButton(navigation, user_id)}
+
           </View>
   
         </View>
