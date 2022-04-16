@@ -40,8 +40,7 @@ const navigateToAdd = ({navigation}) => {
 };
 
 function renderFilterButton(user_id, navigation){
-    console.log(navigation)
-    if(user_id != global.user_id)
+    if(user_id != global.logged_user_id)
         return null;
 
     return <IconButton icon='menu' size={45} 
@@ -50,7 +49,7 @@ function renderFilterButton(user_id, navigation){
  }
 
 function renderAddButton(user_id, navigation){
-    if(user_id != global.user_id)
+    if(user_id != global.logged_user_id)
         return <View style ={{ height: 25}}/>
     
     return (
@@ -99,7 +98,7 @@ export default function ExercisesScreen({route, navigation}) {
                                     marginTop: 20}}>
                         <TouchableOpacity  
                             style ={{flex:3, alignItems:'center', justifyContent:'center'}}
-                            onPress={() => navigation.navigate("ExerciseDetail", {exercise: item})}
+                            onPress={() => navigation.navigate("ExerciseDetail", {exercise: item, user_id: user_id})}
                         >
                             <Image
                                 style={{width: 110, height: 110}}
@@ -109,7 +108,7 @@ export default function ExercisesScreen({route, navigation}) {
                         
                         <TouchableOpacity 
                             style ={{flexDirection:'row', flex:5, alignItems:'center', justifyContent:'center'}}
-                            onPress={() => navigation.navigate("ExerciseDetail", {exercise: item})}
+                            onPress={() => navigation.navigate("ExerciseDetail", {exercise: item, user_id: user_id})}
                         >
                         <Text style ={{fontSize: 19, fontWeight: 'bold'}}>
                             {item.name.toUpperCase()}

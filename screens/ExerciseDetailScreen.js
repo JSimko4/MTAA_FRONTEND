@@ -2,6 +2,25 @@ import * as React from 'react';
 import { View, StyleSheet, Image, TextInput, Text, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import {IconButton} from 'react-native-paper';
 
+function renderBodyParts(styles, body_parts) {
+  return body_parts.map((obj, index) => {
+    const key = index;
+    return <Text style={styles.textBodyparts} key={key}>{obj.name}</Text>
+  });
+}
+
+function renderCallButton(user_id, navigation){
+  if(user_id != global.logged_user_id)
+      return null
+  
+  return (
+    <IconButton 
+      icon='phone' size={40} 
+      onPress={() => navigation.navigate('Call')}
+    />
+  )
+}
+
 const navigateToEdit = ({navigation}, exercise) => {
   return fetch(global.API_URL + 'exercises/body_parts/')
   .then((response) => response.json())
@@ -18,13 +37,6 @@ const navigateToEdit = ({navigation}, exercise) => {
       console.log(error);
   })
 };
-
-function renderBodyParts(styles, body_parts) {
-  return body_parts.map((obj, index) => {
-    const key = index;
-    return <Text style={styles.textBodyparts} key={key}>{obj.name}</Text>
-  });
-}
 
 const deleteExerciseApi = ({navigation}, exercise_id) => {
   return fetch(global.API_URL + 'exercises/' + exercise_id + '/delete/', {
@@ -51,7 +63,10 @@ const deleteExerciseApi = ({navigation}, exercise_id) => {
 
 export default function ExerciseDetailScreen({route, navigation}) {
     const exercise = route.params.exercise;
+    const user_id = route.params.user_id;
     const body_parts = exercise.body_parts;
+    console.log(exercise)
+
 
     const styles = StyleSheet.create({
       image: {
@@ -144,10 +159,8 @@ export default function ExerciseDetailScreen({route, navigation}) {
               <IconButton icon='pencil' size={40} 
                   onPress={() => navigateToEdit({navigation}, exercise)}
               />
-              
-              <IconButton icon='phone' size={40} 
-                  onPress={() => navigation.navigate('Call')}
-              />
+
+              {renderCallButton(user_id, navigation)}
               
               <IconButton icon='trash-can' size={40} 
                   onPress={() => deleteExerciseApi({navigation}, exercise.id)}

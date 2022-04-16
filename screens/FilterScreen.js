@@ -40,7 +40,7 @@ export default class FilterScreen extends React.Component {
 
     filter_string = filter_string.slice(0, -1)
 
-    return fetch(global.API_URL + 'exercises/' + global.user_id + '/filter_exercises/', {
+    return fetch(global.API_URL + 'exercises/' + global.logged_user_id + '/filter_exercises/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -53,7 +53,7 @@ export default class FilterScreen extends React.Component {
     .then((response) => response.json())
     .then((json) => {  
       if (json['status'] === 'success'){
-        navigation.navigate('Exercises', {exercises: json['data'], user_id: global.user_id})
+        navigation.navigate('Exercises', {exercises: json['data'], user_id: global.logged_user_id})
       }
       else{
         alert("Musí byť zvolený aspoň jedna časť tela na vyfiltrovanie")

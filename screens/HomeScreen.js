@@ -2,11 +2,11 @@ import * as React from 'react';
 import { View, Text, StyleSheet, Pressable , Image } from 'react-native';
 
 const exercisesApi = ({navigation}) => {
-  return fetch(global.API_URL + 'exercises/' + global.user_id + '/all')
+  return fetch(global.API_URL + 'exercises/' + global.logged_user_id + '/all')
   .then((response) => response.json())
   .then((json) => {
     if (json['status'] === 'success'){      
-      navigation.navigate('Exercises', {exercises: json['data'], user_id: global.user_id})
+      navigation.navigate('Exercises', {exercises: json['data'], user_id: global.logged_user_id})
     }
     else{
       alert("Nespravne udaje")

@@ -18,7 +18,7 @@ const loginApi = ({navigation}, user_name, user_password) => {
     console.log(json);
 
     if (json['status'] === 'success'){
-      global.user_id = json['id'];
+      global.logged_user_id = json['id'];
       global.access_token = json['access_token'];
       navigation.navigate('Home')
     }

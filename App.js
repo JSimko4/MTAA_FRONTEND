@@ -16,7 +16,7 @@ import EditExerciseScreen from './screens/EditExerciseScreen'
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
-global.user_id = 2 // debugging only - vymazat neskor
+global.logged_user_id = 2 // debugging only - vymazat neskor
 global.access_token = 'n4T1ZQphANT5DimV5TSivKBxgeRFoCinILyFdA9nGXNGgvD0jiESNHGEQTCbz8Mq' // debugging only - vymazat neskor
 
 

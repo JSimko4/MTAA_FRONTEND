@@ -14,7 +14,7 @@ const addExerciseApi = ({navigation}, name, body_parts, image, description) => {
     data.append('image', image[0]);
   }
 
-  return fetch(global.API_URL + 'exercises/'+ global.user_id + '/save_exercise/', {
+  return fetch(global.API_URL + 'exercises/'+ global.logged_user_id + '/save_exercise/', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
