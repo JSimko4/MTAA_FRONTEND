@@ -22,8 +22,17 @@ const loginApi = ({navigation}, user_name, user_password) => {
       global.access_token = json['access_token'];
       navigation.navigate('Home')
     }
-    else{
-      alert("Nespravne udaje")
+    else if (json['status'] === 'bad request')
+    {
+      alert("Zle vyplnené údaje")
+    }
+    else if (json['status'] === 'wrong password')
+    {
+      alert("Nesprávne heslo")
+    }
+    else if (json['status'] === 'user not found')
+    {
+      alert("Zadané meno neexistuje")
     }
   })
   .catch((error) => {

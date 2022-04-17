@@ -30,9 +30,9 @@ const RegisterApi = ({navigation}, user_name, user_password, user_confirm_passwo
       }
       else if(json['status'] === 'bad request')
       {
-        alert("Nesprávne odoslaná/naformátovaná žiadosť")
+        alert("Zle vyplnené údaje")
       }
-      else
+      else if(json['status'] === 'user name already registered')
       {
         alert("Zadané meno je už registrované")
       }
