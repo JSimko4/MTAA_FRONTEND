@@ -20,16 +20,16 @@ export default function CallScreen({ setScreen, screens, roomId }) {
       cachedLocalPC.removeStream(localStream);
       cachedLocalPC.close();
     }
-    setLocalStream();
-    setRemoteStream();
-    setCachedLocalPC();
-    // cleanup
+    setLocalStream(null);
+    setRemoteStream(null);
+    setCachedLocalPC(null);
+
     setScreen(screens.ROOM);
   }
 
-  const [localStream, setLocalStream] = useState();
-  const [remoteStream, setRemoteStream] = useState();
-  const [cachedLocalPC, setCachedLocalPC] = useState();
+  const [localStream, setLocalStream] = useState(null);
+  const [remoteStream, setRemoteStream] = useState(null);
+  const [cachedLocalPC, setCachedLocalPC] = useState(null);
 
   const [isMuted, setIsMuted] = useState(false);
 
@@ -149,10 +149,10 @@ export default function CallScreen({ setScreen, screens, roomId }) {
 
       <View style={{ display: 'flex', flex: 1, padding: 10 }} >
         <View style={styles.rtcview}>
-          {localStream && <RTCView style={styles.rtc} streamURL={localStream && localStream.toURL()} />}
+          {localStream && <RTCView style={styles.rtc} streamURL={localStream.toURL()} />}
         </View>
         <View style={styles.rtcview}>
-          {remoteStream && <RTCView style={styles.rtc} streamURL={remoteStream && remoteStream.toURL()} />}
+          {remoteStream && <RTCView style={styles.rtc} streamURL={remoteStream.toURL()} />}
         </View>
       </View>
 
