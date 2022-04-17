@@ -16,9 +16,6 @@ import EditExerciseScreen from './screens/EditExerciseScreen'
 
 // globals
 global.API_URL = 'https://fiit-mtaa-app4.azurewebsites.net/'
-global.logged_user_id = 2 // debugging only - vymazat neskor
-global.access_token = 'n4T1ZQphANT5DimV5TSivKBxgeRFoCinILyFdA9nGXNGgvD0jiESNHGEQTCbz8Mq' // debugging only - vymazat neskor
-
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +46,6 @@ export default function App(){
           <Stack.Screen name="AddExercise" component={AddExerciseScreen}/>
           <Stack.Screen name="PickBodyParts" component={PickBodyPartsScreen}/>
           <Stack.Screen name="EditExercise" component={EditExerciseScreen}/>
-
           <Stack.Screen name="Call" component={CallScreen}/>
 
         </Stack.Navigator>
