@@ -2,9 +2,6 @@ import * as React from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import DocumentPicker from 'react-native-document-picker';
-import KeyboardListener from 'react-native-keyboard-listener';
-
-
 
 const addExerciseApi = ({navigation}, name, body_parts, image, description) => {
 
@@ -67,7 +64,6 @@ export default function AddExerciseScreen({route, navigation}) {
   const exercise_description = route.params.exercise_description;
   const body_parts = route.params.body_parts;
   const body_parts_string = route.params.body_parts_string;
-  //const [keyboardOpen, setKeyboardOpen] = React.useState(false);
 
 
   
@@ -177,7 +173,6 @@ export default function AddExerciseScreen({route, navigation}) {
         },
     });
     
-//0.9
   return(
   <View style={{flex: 1}}>
 
