@@ -29,7 +29,7 @@ const addExerciseApi = ({navigation}, name, body_parts, image, description) => {
       navigation.navigate('Home')
     }
     else{
-      alert("Nespravne udaje")
+      alert("Nesprávne zadané údaje")
     }
   })
   .catch((error) => {
