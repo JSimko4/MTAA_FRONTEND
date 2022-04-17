@@ -106,16 +106,28 @@ export default function EditExerciseScreen({route, navigation}) {
   };
 
   const styles = StyleSheet.create({
-      input: {
-        paddingVertical: 12,
-        paddingHorizontal: 15,
-        borderRadius: 15,
-        fontSize: 19,
-        width: 250,
-        borderWidth: 1.5,
-        marginBottom: 0,
-        backgroundColor: "transparent"
-      },
+    input: {
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      borderRadius: 15,
+      fontSize: 19,
+      width: 300, //250
+      height: 75,
+      borderWidth: 1.5,
+      marginBottom: 0,
+      backgroundColor: "transparent",
+      textAlignVertical: 'top',
+    },
+    inputNazov: {
+      paddingVertical: 12,
+      paddingHorizontal: 15,
+      borderRadius: 15,
+      fontSize: 19,
+      width: 250, //250
+      borderWidth: 1.5,
+      marginBottom: 0,
+      backgroundColor: "transparent",
+    },
       button1: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -184,25 +196,26 @@ export default function EditExerciseScreen({route, navigation}) {
   return(
   <View style={{flex: 1}}>
 
-          <View style ={{flex: 0.250, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+          <View style ={{flex: 5, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
               <IconButton icon='arrow-left-circle' size={45} 
                   onPress={() => navigation.goBack()}
               />
           </View>
 
-      <View style={{flex: 0.9, flexDirection:'column',alignItems:'center'}}>
+      <View style={{flex: 33.9, flexDirection:'column',alignItems:'center'}}>
       <Text style={styles.textNazov}>Názov cvičenia</Text>
       <TextInput 
-        style={styles.input}
+        style={styles.inputNazov}
         onChangeText={onChangeName}
         defaultValue={name}
+        maxLength={19}
         />
 
       <TouchableOpacity 
         style={styles.button1}
         onPress={selectFile}
       >
-        <Text style={styles.text}>{image != null ? image[0].name : 'Zmeniť obrázok...'}</Text>
+        <Text style={styles.text}>{image != null ? 'Nový obrázok bol nahratý': 'Zmeniť obrázok...'}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -224,20 +237,23 @@ export default function EditExerciseScreen({route, navigation}) {
       </TouchableOpacity>
       </View>
 
-      <View style={{flex: 0.85, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flex: 9.15, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
         {renderBodyParts(styles, body_parts, body_parts_string)}
       </View>
 
-      <View style={{flex: 0.65 , flexDirection: 'column', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start'}}>
+      <View style={{flex: 17.8, flexDirection: 'column', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start', marginLeft: 50}}>
         <Text style={styles.textMidNazov}>Popis cvičenia: </Text>
         <TextInput 
           style={styles.input}
           onChangeText={onChangeDescription}
           defaultValue={description}
+          numberOfLines={1}
+          multiline={true}
+          maxLength={254}
         />
       </View>
 
-      <View style ={{flex: 0.65, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+      <View style ={{flex: 11, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
           <TouchableOpacity 
             style={styles.button2}
             onPress={() => editExerciseApi({navigation}, name, body_parts_string, image, description)}

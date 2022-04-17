@@ -84,13 +84,13 @@ export default class FilterScreen extends React.Component {
                 onPress={() => this.navigation.goBack()}
             />
         </View>
-        <View style = {{flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-          <Text style ={{marginLeft: -100, marginTop: 15, fontSize: 16, lineHeight: 21, fontWeight: 'bold',}}>Filtrovanie podľa časti tela: ({this.state.count}/3)</Text>
+        <View style = {{flexDirection:'column', justifyContent:'space-around'}}>
+          <Text style ={{marginLeft: -100, marginTop: 15, fontSize: 16, lineHeight: 21, fontWeight: 'bold', marginLeft: 30, marginBottom: 10}}>Filtrovanie podľa časti tela: ({this.state.count}/3)</Text>
           {this.state.checkboxes.length > 0 &&
             this.state.checkboxes.map(checkbox => (
-              <View style = {{flexDirection:'column', alignItems:'center', justifyContent:'center', marginTop: 25}}>
-                <View style = {{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                <View style = {{marginLeft: 20, flexDirection: 'row', alignItems:'flex-start'}}>
+              <View style = {{flexDirection:'column', marginTop: 25}}>
+                <View style = {{flexDirection:'row', alignItems:'center', justifyContent:'flex-start', marginLeft: 120}}>
+                <View style = {{marginLeft: 20, flexDirection: 'row'}}>
                 <CheckBox
                   onValueChange={value =>
                     this.setState(state => {
@@ -120,7 +120,7 @@ export default class FilterScreen extends React.Component {
                   value={checkbox.value}
                   key={checkbox.id}
                 />
-                    <Text>{checkbox.name}</Text>
+                    <Text style = {{marginLeft: 30, fontSize: 16}}>{checkbox.name}</Text>
                     </View> 
                     </View>
                   </View>

@@ -2,6 +2,9 @@ import * as React from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity} from 'react-native';
 import {IconButton} from 'react-native-paper';
 import DocumentPicker from 'react-native-document-picker';
+import KeyboardListener from 'react-native-keyboard-listener';
+
+
 
 const addExerciseApi = ({navigation}, name, body_parts, image, description) => {
 
@@ -64,6 +67,10 @@ export default function AddExerciseScreen({route, navigation}) {
   const exercise_description = route.params.exercise_description;
   const body_parts = route.params.body_parts;
   const body_parts_string = route.params.body_parts_string;
+  //const [keyboardOpen, setKeyboardOpen] = React.useState(false);
+
+
+  
 
   const selectFile = async () => {
     try {
@@ -89,10 +96,22 @@ export default function AddExerciseScreen({route, navigation}) {
         paddingHorizontal: 15,
         borderRadius: 15,
         fontSize: 19,
-        width: 250,
+        width: 300, //250
+        height: 75,
         borderWidth: 1.5,
         marginBottom: 0,
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        textAlignVertical: 'top',
+      },
+      inputNazov: {
+        paddingVertical: 12,
+        paddingHorizontal: 15,
+        borderRadius: 15,
+        fontSize: 19,
+        width: 250, //250
+        borderWidth: 1.5,
+        marginBottom: 0,
+        backgroundColor: "transparent",
       },
       button1: {
         alignItems: 'center',
@@ -158,28 +177,29 @@ export default function AddExerciseScreen({route, navigation}) {
         },
     });
     
-
+//0.9
   return(
   <View style={{flex: 1}}>
 
-          <View style ={{flex: 0.250, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+          <View style ={{flex: 3, flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop: 3}}>
               <IconButton icon='arrow-left-circle' size={45} 
                   onPress={() => navigation.goBack()}
               />
           </View>
 
-      <View style={{flex: 0.9, flexDirection:'column',alignItems:'center'}}>
+      <View style={{flex: 27.9, flexDirection:'column',alignItems:'center'}}>  
       <Text style={styles.textNazov}>Názov cvičenia</Text>
       <TextInput 
-        style={styles.input}
+        style={styles.inputNazov}
         onChangeText={onChangeName}
+        maxLength={19}
         />
 
       <TouchableOpacity 
         style={styles.button1}
         onPress={selectFile}
       >
-        <Text style={styles.text}>{image != null ? image[0].name : 'Nahrať obrázok...'}</Text>
+        <Text style={styles.text}>{image != null ? 'Obrázok bol nahratý' : 'Nahrať obrázok...'}</Text> 
       </TouchableOpacity>
 
       <TouchableOpacity 
@@ -199,21 +219,26 @@ export default function AddExerciseScreen({route, navigation}) {
       >
         <Text style={styles.text}>Nastaviť časti tela</Text>
       </TouchableOpacity>
+      
+
+      <View style={{flex: 9.15, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+      {renderBodyParts(styles, body_parts, body_parts_string)}
+      </View> 
       </View>
 
-      <View style={{flex: 0.85, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        {renderBodyParts(styles, body_parts, body_parts_string)}
-      </View>
 
-      <View style={{flex: 0.65 , flexDirection: 'column', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'flex-start'}}>
+      <View style={{flex: 11.8, flexDirection: 'column', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', marginLeft: 50}}>
         <Text style={styles.textMidNazov}>Popis cvičenia: </Text>
         <TextInput 
           style={styles.input}
           onChangeText={onChangeDescription}
+          numberOfLines={1}
+          multiline={true}
+          maxLength={254}
         />
       </View>
 
-      <View style ={{flex: 0.65, flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
+      <View style ={{flex: 7.3, flexDirection:'column', justifyContent:'center', alignItems:'center', marginBottom: 20}}>
           <TouchableOpacity 
             style={styles.button2}
             onPress={() => addExerciseApi({navigation}, name, body_parts_string, image, description)}
@@ -224,3 +249,5 @@ export default function AddExerciseScreen({route, navigation}) {
   </View>
     );
 }
+
+    // <Text style={styles.text}>{image != null ? image[0].name : 'Nahrať obrázok...'}</Text> 

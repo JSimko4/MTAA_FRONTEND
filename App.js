@@ -35,7 +35,7 @@ export default function App(){
          screenOptions = {{
                 headerShown: false
             }} 
-            initialRouteName={"Home"}
+            initialRouteName={"Landing"}
         >
           
           <Stack.Screen name="Landing" component={LandingScreen}/>
