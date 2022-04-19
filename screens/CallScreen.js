@@ -67,17 +67,20 @@ export default function CallScreen({ setScreen, screens, roomId }) {
 
     const roomRef = await db.collection('rooms').doc(id);
     const callerCandidatesCollection = roomRef.collection('callerCandidates');
+    let received = false;
     localPC.onicecandidate = e => {
-      if (!e.candidate) {
+      if (!e.candidate && received) {
         console.log('Got final candidate!');
         return;
       }
-      callerCandidatesCollection.add(e.candidate.toJSON());
+      else if(e.candidate)
+        callerCandidatesCollection.add(e.candidate.toJSON());
     };
 
     localPC.onaddstream = e => {
       if (e.stream && remoteStream !== e.stream) {
         console.log('RemotePC received the stream call', e.stream);
+        received = true;
         setRemoteStream(e.stream);
       }
     };
